@@ -5,6 +5,8 @@ metadata:
   namespace: azdn949-dev
   labels:
     app: nginx
+  annotations:
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"oc-sample:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nginx\")].image"}]'
 spec:
   replicas: 1
   selector:
@@ -17,7 +19,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: oc-sample:latest
+          image: image-registry.openshift-image-registry.svc:5000/azdn949-dev/oc-sample:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
