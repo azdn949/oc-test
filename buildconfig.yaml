@@ -10,7 +10,7 @@ spec:
     type: Git
     git:
       uri: https://github.com/azdn949/oc-test.git
-      ref: BuildConfig  # Points directly to your BuildConfig branch
+      ref: Route-internal # Points directly to your BuildConfig branch
   strategy:
     type: Docker
     dockerStrategy:
