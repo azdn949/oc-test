@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: oc-sample-route
+  namespace: azdn949-dev
+  labels:
+    app: nginx
+spec:
+  to:
+    kind: Service
+    name: oc-sample-service
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
