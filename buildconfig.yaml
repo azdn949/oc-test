@@ -1,0 +1,23 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: oc-sample-build
+  namespace: azdn949-dev
+  labels:
+    app: nginx
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/azdn949/oc-test.git
+      ref: BuildConfig  # Points directly to your BuildConfig branch
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: oc-sample:latest
+  triggers:
+    - type: ConfigChange
