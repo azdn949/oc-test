@@ -1,0 +1,19 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: oc-sample
+  namespace: azdn949-dev
+  labels:
+    app: nginx
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: "0.3"
+      from:
+        kind: DockerImage
+        name: docker.io/azdn949/oc-sample:0.3
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Source
