@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: image-registry.openshift-image-registry.svc:5000/azdn949-dev/oc-sample:latest
+          image: oc-sample:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
