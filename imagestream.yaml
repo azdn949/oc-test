@@ -1,0 +1,10 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: oc-sample
+  namespace: azdn949-dev
+  labels:
+    app: nginx
+spec:
+  lookupPolicy:
+    local: true
