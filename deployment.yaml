@@ -6,7 +6,7 @@ metadata:
   labels:
     app: nginx
   annotations:
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"oc-sample:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nginx\")].image"}]'
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"oc-sample:latest"},"fieldPath":"spec.template.containers[?(@.name==\"nginx\")].image"}]'
 spec:
   replicas: 1
   selector:
@@ -18,9 +18,16 @@ spec:
         app: nginx
     spec:
       containers:
-        - name: nginx
-          image: image-registry.openshift-image-registry.svc:5000/azdn949-dev/oc-sample:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-              protocol: TCP
+      - name: nginx
+        image: image-registry.openshift-image-registry.svc:5000/azdn949-dev/oc-sample:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
