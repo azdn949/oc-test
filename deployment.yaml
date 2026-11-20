@@ -9,6 +9,8 @@ metadata:
     image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"oc-sample:latest"},"fieldPath":"spec.template.containers[?(@.name==\"nginx\")].image"}]'
 spec:
   replicas: 1
+  strategy:
+    type: Recreate # Prevents multi-attach errors with ReadWriteOnce storage during updates
   selector:
     matchLabels:
       app: nginx
@@ -31,3 +33,12 @@ spec:
           limits:
             cpu: "250m"
             memory: "256Mi"
+        volumeMounts:
+        - name: nginx-data
+          mountPath: /usr/share/nginx/html # Change this to the directory inside your container
+      volumes:
+      - name: nginx-data
+        persistentVolumeClaim:
+          claimName: nginx-storage-pvc
+
+
