@@ -2,11 +2,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: podviewer-viewpods-binding
-  namespace: azdn-949
+  namespace: azdn949-dev
 subjects:
 - kind: ServiceAccount
   name: podviewer
-  namespace: azdn-949
+  namespace: azdn949-dev
 roleRef:
   kind: Role
   name: viewpods
