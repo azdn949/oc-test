@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oc-sample-config
+  namespace: azdn949-dev
+data:
+  APP_ENV: "development"
+  LOG_LEVEL: "debug"
+  API_URL: "https://example.com"
